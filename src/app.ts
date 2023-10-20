@@ -1,9 +1,12 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import userRoutes from './modules/user/user.routes';
+import passwordRouter from './modules/passwordRouter';
 import taApplicationRoutes from './modules/taApplication/taApplication.routes';
 
 const app = express();
+
+// This is a comment
 
 // Middleware
 app.use( bodyParser.urlencoded( { extended: false } ) );
@@ -30,8 +33,10 @@ app.use( ( req, res, next ) => {
 } );
 
 // import routes which are defined in modules
-app.use( '/user', userRoutes );
-app.use( '/ta-application', taApplicationRoutes );
+// app.use('/api', passwordResetRouter);
+app.use('/api', passwordRouter);
+app.use('/user', userRoutes);
+app.use('/ta-application', taApplicationRoutes);
 
 
 app.get( '/', ( req, res ) => {
